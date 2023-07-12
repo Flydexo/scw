@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-pragma solidity 0.8.17;
+pragma solidity ^0.8.17;
 import {IHooks} from "./IHooks.sol";
 import "hardhat/console.sol";
 import {Enum} from "../../../common/Enum.sol";

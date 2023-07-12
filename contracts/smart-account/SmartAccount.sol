@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
+pragma solidity ^0.8.17;
 
 import {BaseSmartAccount, IEntryPoint, UserOperation} from "./BaseSmartAccount.sol";
 import {ModuleManager} from "./base/ModuleManager.sol";
@@ -10,6 +10,8 @@ import {IERC165} from "./interfaces/IERC165.sol";
 import {SmartAccountErrors} from "./common/Errors.sol";
 import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {IAuthorizationModule} from "./interfaces/IAuthorizationModule.sol";
+
+import "forge-std/console.sol";
 
 /**
  * @title SmartAccount - EIP-4337 compatible smart contract wallet.
@@ -263,7 +265,6 @@ contract SmartAccount is
     ) external virtual override returns (uint256 validationData) {
         if (msg.sender != address(entryPoint()))
             revert CallerIsNotAnEntryPoint(msg.sender);
-
         (, address validationModule) = abi.decode(
             userOp.signature,
             (bytes, address)
